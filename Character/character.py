@@ -1,6 +1,11 @@
 import random
-import EnemyCharacter.echaracter
-import EnemyCharacter.EnemyCharacterInvokeFunctions.enemy_character_invoke_functions
+from EnemyCharacter import echaracter
+from Equipment import equipment
+from faker import Faker
+
+from Equipment.equipment import Equipment
+
+fake = Faker()
 
 
 class Character:
@@ -14,6 +19,7 @@ class Character:
         self.experience = 0
         self.level = 0
         self.statusEffect = None
+        self.equipment = Equipment()
 
     @property
     def hp(self):
@@ -117,21 +123,211 @@ class Character:
             return False
 
     def gain_experience_from_enemy(self, enemy):
-        experience_gained = EnemyCharacter.EnemyCharacterInvokeFunctions.enemy_character_invoke_functions.calculate_total_experience()
+        experience_gained = echaracter.ECharacter.calculate_total_experience(enemy)
         self.increase_experience(experience_gained)
         print(f"{self.name} gained {experience_gained} experience from defeating {enemy.name}!")
+
+    def calculate_character_damage(self):
+        primary_damage_deal_attribute = max(self.strength, self.dexterity, self.intelligence)
+        if self.equipment.weapon:
+            return (primary_damage_deal_attribute / 5) + self.equipment.weapon.damage
+        else:
+            return primary_damage_deal_attribute
+
+    def calculate_character_damage_taken(self):
+        total_armour = 0
+        for slot in [self.equipment.head, self.equipment.chest, self.equipment.legs, self.equipment.boots,
+                     self.equipment.hands, self.equipment.offhand]:
+            if slot and slot.armour:
+                total_armour += slot.armour
+        return total_armour
 
 
 character = Character()
 
-player = Character()
-player.name = "John"
-player.level = 0
-player.strength = 10
-player.dexterity = 5
-player.intelligence = 6
-enemy_player = EnemyCharacter.echaracter.enemy_character
 
-player.gain_experience_from_enemy(enemy_player)
+class Warrior(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(50, 70)
+        self.mp = 10
+        self.strength = random.randint(12, 15)
+        self.dexterity = random.randint(7, 11)
+        self.intelligence = random.randint(1, 4)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
 
-print(f"{player.name}'s Level: {player.level}")
+
+warrior = Warrior()
+
+
+class Rogue(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(30, 40)
+        self.mp = 30
+        self.strength = random.randint(5, 9)
+        self.dexterity = random.randint(12, 15)
+        self.intelligence = random.randint(3, 6)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+rogue = Rogue()
+
+
+class Mage(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(25, 40)
+        self.mp = 40
+        self.strength = random.randint(1, 4)
+        self.dexterity = random.randint(8, 11)
+        self.intelligence = random.randint(11, 15)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+mage = Mage()
+
+
+class Cleric(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(30, 40)
+        self.mp = 40
+        self.strength = random.randint(6, 9)
+        self.dexterity = random.randint(6, 9)
+        self.intelligence = random.randint(8, 12)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+cleric = Cleric()
+
+
+class Hunter(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(30, 45)
+        self.mp = 20
+        self.strength = random.randint(5, 10)
+        self.dexterity = random.randint(10, 13)
+        self.intelligence = random.randint(5, 7)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+hunter = Hunter()
+
+
+class Necromancer(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(25, 40)
+        self.mp = 40
+        self.strength = random.randint(5, 10)
+        self.dexterity = random.randint(5, 8)
+        self.intelligence = random.randint(10, 12)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+necromancer = Necromancer()
+
+
+class Monk(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(30, 40)
+        self.mp = 10
+        self.strength = random.randint(6, 10)
+        self.dexterity = random.randint(11, 15)
+        self.intelligence = random.randint(3, 5)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+monk = Monk()
+
+
+class Assassin(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(20, 40)
+        self.mp = 20
+        self.strength = random.randint(6, 7)
+        self.dexterity = random.randint(11, 17)
+        self.intelligence = random.randint(3, 6)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+assassin = Assassin()
+
+
+class Paladin(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(40, 60)
+        self.mp = 30
+        self.strength = random.randint(11, 13)
+        self.dexterity = random.randint(4, 8)
+        self.intelligence = random.randint(5, 9)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+paladin = Paladin()
+
+
+class Shaman(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(25, 40)
+        self.mp = 30
+        self.strength = random.randint(6, 11)
+        self.dexterity = random.randint(3, 5)
+        self.intelligence = random.randint(12, 14)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+shaman = Shaman()
+
+
+class Druid(Character):
+    def __init__(self):
+        super().__init__()
+        self.name = fake.name()
+        self.hp = random.randint(25, 40)
+        self.mp = 25
+        self.strength = random.randint(6, 10)
+        self.dexterity = random.randint(8, 10)
+        self.intelligence = random.randint(6, 10)
+        self.experience = 0
+        self.level = 0
+        self.statusEffect = None
+
+
+druid = Druid()

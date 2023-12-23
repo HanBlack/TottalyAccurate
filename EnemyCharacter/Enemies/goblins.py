@@ -342,4 +342,3 @@ class BossEvolutionGoblin(echaracter.ECharacter):
         self.level = 12
         self.statusEffect = "Fury Swipe"  # life steal by damage deal
         return self
-

@@ -1,3 +1,6 @@
+import random
+
+
 class ECharacter:
     def __init__(self):
         self.name = ""
@@ -83,7 +86,7 @@ class ECharacter:
             self._level = value
 
     def calculate_total_experience(self):
-        base_exp = self.level * 100
+        base_exp = self.level * 90
         hp_multiplier = self.hp / 10
         strength_multiplier = self.strength / 2
         dexterity_multiplier = self.dexterity / 2
@@ -92,3 +95,36 @@ class ECharacter:
                             dexterity_multiplier + intelligence_multiplier)
 
         return int(total_experience)
+
+    def calculate_damage_done_by_enemy(self):
+        primary_damage_deal_attribute = max(self.strength, self.dexterity, self.intelligence)
+
+        if self.check_if_enemy_scored_critical_hit():
+            primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
+
+        if primary_damage_deal_attribute <= 5:
+            minimal_damage_done = primary_damage_deal_attribute - 1
+            maximal_damage_done = primary_damage_deal_attribute + 1
+            return int(random.randint(minimal_damage_done, maximal_damage_done))
+        elif 5 <= primary_damage_deal_attribute <= 15:
+            minimal_damage_done = primary_damage_deal_attribute - 2
+            maximal_damage_done = primary_damage_deal_attribute + 2
+            return int(random.randint(minimal_damage_done, maximal_damage_done))
+        elif 15 <= primary_damage_deal_attribute <= 30:
+            minimal_damage_done = primary_damage_deal_attribute - 4
+            maximal_damage_done = primary_damage_deal_attribute + 4
+            return int(random.randint(minimal_damage_done, maximal_damage_done))
+        else:
+            return int(primary_damage_deal_attribute)
+
+    def calculate_enemy_critical_chance(self):
+        base_chance = self.dexterity * 0.1
+        level_modifier = 1 + (self.level * 0.05)
+        chance_to_crit = base_chance * level_modifier
+        chance_to_crit = min(chance_to_crit, 100)
+        return chance_to_crit
+
+    def check_if_enemy_scored_critical_hit(self):
+        crit_chance = self.calculate_enemy_critical_chance()
+        compare_number = random.randint(0, 100)
+        return compare_number <= crit_chance

@@ -337,6 +337,9 @@ class Helmet(equipment.EquipmentStats):
         self.mp_bonus = random.randint(0, 10)
 
 
+helmet = Helmet()
+
+
 class Chest(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -394,6 +397,9 @@ class Chest(equipment.EquipmentStats):
         self.mp_bonus = random.randint(0, 10)
 
 
+chest = Chest()
+
+
 class Legs(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -444,6 +450,9 @@ class Legs(equipment.EquipmentStats):
         self.dexterity_bonus = random.randint(0, 4)
         self.hp_bonus = random.randint(0, 20)
         self.mp_bonus = random.randint(0, 10)
+
+
+legs = Legs()
 
 
 class Boots(equipment.EquipmentStats):
@@ -498,6 +507,9 @@ class Boots(equipment.EquipmentStats):
         self.mp_bonus = random.randint(0, 10)
 
 
+boots = Boots()
+
+
 class Hands(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -548,6 +560,9 @@ class Hands(equipment.EquipmentStats):
         self.dexterity_bonus = random.randint(0, 4)
         self.hp_bonus = random.randint(0, 20)
         self.mp_bonus = random.randint(0, 10)
+
+
+hands = Hands()
 
 
 class Neck(equipment.EquipmentStats):
@@ -604,6 +619,9 @@ class Neck(equipment.EquipmentStats):
         self.mp_bonus = random.randint(0, 20)
 
 
+neck = Neck()
+
+
 class Ring(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -658,6 +676,9 @@ class Ring(equipment.EquipmentStats):
         self.mp_bonus = random.randint(0, 20)
 
 
+ring = Ring()
+
+
 class Weapon(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -671,6 +692,7 @@ class Weapon(equipment.EquipmentStats):
     def common_sword_lvl_1_to_15(self):
         self.name = normal_generate_sword_name()
         self.damage = random.randint(1, 3)
+        return self
 
     def rare_sword_lvl_1_to_15(self):
         self.name = rare_generate_sword_name()
@@ -951,6 +973,9 @@ class Weapon(equipment.EquipmentStats):
         self.mp_bonus = random.randint(2, 10)
 
 
+weapon = Weapon()
+
+
 class Offhand(equipment.EquipmentStats):
     def __init__(self):
         super().__init__()
@@ -1066,3 +1091,5 @@ class Offhand(equipment.EquipmentStats):
         self.hp_bonus = random.randint(0, 20)
         self.mp_bonus = random.randint(0, 10)
 
+
+offhand = Offhand()
