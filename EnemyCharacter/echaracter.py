@@ -101,7 +101,6 @@ class ECharacter:
 
         if self.check_if_enemy_scored_critical_hit():
             primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
-
         if primary_damage_deal_attribute <= 5:
             minimal_damage_done = primary_damage_deal_attribute - 1
             maximal_damage_done = primary_damage_deal_attribute + 1

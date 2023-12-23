@@ -1,0 +1,45 @@
+Name: Glacial Buckler of Warbringer
+Damage: None
+Armour: 11
+Strength Bonus: None
+Dexterity Bonus: 1
+Intelligence Bonus: None
+HP Bonus: 1
+MP Bonus: None
+
+Name: Soul Boots of Frostbite
+Damage: None
+Armour: 3
+Strength Bonus: 0
+Dexterity Bonus: 0
+Intelligence Bonus: None
+HP Bonus: 0
+MP Bonus: 1
+
+Name: Savage Wand of Runesong
+Damage: 4
+Armour: None
+Strength Bonus: None
+Dexterity Bonus: None
+Intelligence Bonus: 1
+HP Bonus: None
+MP Bonus: None
+
+Name: Stormforged Stave of Shattersong
+Damage: 7
+Armour: None
+Strength Bonus: 1
+Dexterity Bonus: None
+Intelligence Bonus: 1
+HP Bonus: 3
+MP Bonus: 1
+
+Name: Ancient Stave of Arcanite
+Damage: 7
+Armour: None
+Strength Bonus: 1
+Dexterity Bonus: None
+Intelligence Bonus: 0
+HP Bonus: 4
+MP Bonus: 2
+

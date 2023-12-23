@@ -1,4 +1,52 @@
 from EnemyCharacter import echaracter
+from random import choice
+from Equipment.EquipmentList import helmet, chest, legs, boots, hands, neck, ring, shield, axe, bow, buckler, crossbow, \
+    dagger, hammer, mana_orb, staff, sword, wand
+from Equipment.inventory import inventory
+
+
+def drop_item_goblin_boss_loottable():
+    items = [helmet.helmet.rare_helmets_lvl_1_to_15(), chest.chest.rare_chest_lvl_1_to_15(),
+             legs.legs.rare_legs_lvl_1_to_15(), boots.boots.rare_boots_lvl_1_to_15(),
+             ring.ring.rare_ring_lvl_1_to_15(), neck.neck.rare_neck_lvl_1_to_15(),
+             sword.sword.rare_sword_lvl_1_to_15(), axe.axe.rare_axe_lvl_1_to_15(),
+             dagger.dagger.rare_dagger_lvl_1_to_15(), bow.bow.rare_bow_lvl_1_to_15(),
+             staff.staff.rare_staff_lvl_15_to_30(), crossbow.crossbow.rare_crossbow_lvl_1_to_15(),
+             hammer.hammer.rare_hammer_lvl_1_to_15(), wand.wand.rare_wand_lvl_1_to_15(),
+             buckler.buckler.rare_buckler_lvl_1_to_15(), shield.shield.rare_shield_lvl_1_to_15(),
+             mana_orb.mana_orb.rare_mana_orb_lvl_1_to_15(), hands.hands.rare_hands_lvl_1_to_15()]
+    return choice(items)
+
+
+def drop_item_goblin_lower_evolution_loottable():
+    items = [helmet.helmet.common_helmets_lvl_1_to_15(), chest.chest.common_chest_lvl_1_to_15(),
+             legs.legs.common_legs_lvl_1_to_15(), boots.boots.common_boots_lvl_1_to_15(),
+             ring.ring.common_ring_lvl_1_to_15(), neck.neck.common_neck_lvl_1_to_15(),
+             sword.sword.common_sword_lvl_1_to_15(), axe.axe.common_axe_lvl_1_to_15(),
+             dagger.dagger.common_dagger_lvl_1_to_15(), bow.bow.common_bow_lvl_1_to_15(),
+             staff.staff.common_staff_lvl_15_to_30(), crossbow.crossbow.common_crossbow_lvl_1_to_15(),
+             hammer.hammer.common_hammer_lvl_1_to_15(), wand.wand.common_wand_lvl_1_to_15(),
+             buckler.buckler.common_buckler_lvl_1_to_15(), shield.shield.common_shield_lvl_1_to_15(),
+             mana_orb.mana_orb.common_mana_orb_lvl_1_to_15(), hands.hands.common_hands_lvl_1_to_15()]
+    return choice(items)
+
+
+def defeat_enemy_goblin_boss(boss):
+    if boss.hp == 0:
+        dropped_item = drop_item_goblin_boss_loottable()
+        inventory.add_item(dropped_item)
+        file_path = "inventory.txt"
+        with open(file_path, "a") as file:
+            file.write(
+                f"Name: {dropped_item.name}\n"
+                f"Damage: {dropped_item.damage}\n"
+                f"Armour: {dropped_item.armour}\n"
+                f"Strength Bonus: {dropped_item.strength_bonus}\n"
+                f"Dexterity Bonus: {dropped_item.dexterity_bonus}\n"
+                f"Intelligence Bonus: {dropped_item.intelligence_bonus}\n"
+                f"HP Bonus: {dropped_item.hp_bonus}\n"
+                f"MP Bonus: {dropped_item.mp_bonus}\n\n"
+            )
 
 
 class LowerEvolutionGoblin(echaracter.ECharacter):
