@@ -92,14 +92,3 @@ class ECharacter:
                             dexterity_multiplier + intelligence_multiplier)
 
         return int(total_experience)
-
-
-enemy_character = ECharacter()
-
-enemy_character.name = "Goblin"
-enemy_character.hp = 40
-enemy_character.mp = 20
-enemy_character.strength = 4
-enemy_character.dexterity = 6
-enemy_character.intelligence = 1
-enemy_character.level = 1

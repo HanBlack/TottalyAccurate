@@ -1,5 +1,6 @@
 import random
 import EnemyCharacter.echaracter
+import EnemyCharacter.EnemyCharacterInvokeFunctions.enemy_character_invoke_functions
 
 
 class Character:
@@ -116,7 +117,7 @@ class Character:
             return False
 
     def gain_experience_from_enemy(self, enemy):
-        experience_gained = EnemyCharacter.echaracter.enemy_character.calculate_total_experience()
+        experience_gained = EnemyCharacter.EnemyCharacterInvokeFunctions.enemy_character_invoke_functions.calculate_total_experience()
         self.increase_experience(experience_gained)
         print(f"{self.name} gained {experience_gained} experience from defeating {enemy.name}!")
 
