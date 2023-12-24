@@ -123,7 +123,7 @@ class Character:
         if character_class not in character_classes:
             raise ValueError(f"Invalid character class: {character_class}")
 
-        new_character = character_classes[character_class]()
+        new_character = character_classes[character_class.lower()]()
         return new_character
 
 
