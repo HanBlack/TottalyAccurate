@@ -27,12 +27,14 @@ class Ring(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_ring_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_ring_name()
-        self.intelligence_bonus = random.randint(0, 1)
+        self.intelligence_bonus = random.randint(1, 2)
         self.hp_bonus = random.randint(0, 2)
         return self
 
     def rare_ring_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_ring_name()
         self.intelligence_bonus = random.randint(0, 2)
         self.hp_bonus = random.randint(0, 5)
@@ -40,22 +42,25 @@ class Ring(equipment.EquipmentStats):
         return self
 
     def common_ring_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_ring_name()
-        self.intelligence_bonus = random.randint(0, 3)
+        self.intelligence_bonus = random.randint(1, 6)
         self.hp_bonus = random.randint(0, 5)
         self.mp_bonus = random.randint(0, 2)
         return self
 
     def rare_ring_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_ring_name()
-        self.strength_bonus = random.randint(0, 1)
-        self.dexterity_bonus = random.randint(0, 1)
-        self.intelligence_bonus = random.randint(0, 5)
+        self.strength_bonus = random.randint(1, 2)
+        self.dexterity_bonus = random.randint(1, 2)
+        self.intelligence_bonus = random.randint(1, 10)
         self.hp_bonus = random.randint(0, 10)
         self.mp_bonus = random.randint(0, 10)
         return self
 
     def common_ring_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_ring_name()
         self.strength_bonus = random.randint(0, 2)
         self.dexterity_bonus = random.randint(0, 2)
@@ -65,11 +70,12 @@ class Ring(equipment.EquipmentStats):
         return self
 
     def rare_ring_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_ring_name()
         self.armour = random.randint(0, 10)
         self.strength_bonus = random.randint(2, 4)
         self.dexterity_bonus = random.randint(2, 4)
-        self.intelligence_bonus = random.randint(5, 10)
+        self.intelligence_bonus = random.randint(5, 15)
         self.hp_bonus = random.randint(0, 30)
         self.mp_bonus = random.randint(0, 20)
         return self

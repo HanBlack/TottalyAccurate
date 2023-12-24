@@ -27,11 +27,13 @@ class Buckler(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_buckler_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_buckler_name()
         self.armour = random.randint(5, 15)
         return self
 
     def rare_buckler_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_buckler_name()
         self.armour = random.randint(2, 30)
         self.dexterity_bonus = random.randint(0, 1)
@@ -39,12 +41,14 @@ class Buckler(equipment.EquipmentStats):
         return self
 
     def common_buckler_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_buckler_name()
         self.armour = random.randint(15, 30)
         self.dexterity_bonus = random.randint(0, 1)
         return self
 
     def rare_buckler_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_buckler_name()
         self.armour = random.randint(30, 60)
         self.dexterity_bonus = random.randint(0, 2)
@@ -52,12 +56,14 @@ class Buckler(equipment.EquipmentStats):
         return self
 
     def common_buckler_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_buckler_name()
         self.armour = random.randint(30, 50)
         self.dexterity_bonus = random.randint(0, 2)
         return self
 
     def rare_buckler_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_buckler_name()
         self.armour = random.randint(60, 80)
         self.dexterity_bonus = random.randint(0, 4)

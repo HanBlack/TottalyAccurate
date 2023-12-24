@@ -27,11 +27,13 @@ class ManaOrb(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_mana_orb_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_mana_orb_name()
         self.armour = random.randint(5, 15)
         return self
 
     def rare_mana_orb_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_mana_orb_name()
         self.armour = random.randint(2, 30)
         self.strength_bonus = random.randint(0, 1)
@@ -41,6 +43,7 @@ class ManaOrb(equipment.EquipmentStats):
         return self
 
     def common_mana_orb_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_mana_orb_name()
         self.armour = random.randint(15, 30)
         self.strength_bonus = random.randint(0, 1)
@@ -48,6 +51,7 @@ class ManaOrb(equipment.EquipmentStats):
         return self
 
     def rare_mana_orb_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_mana_orb_name()
         self.armour = random.randint(30, 60)
         self.strength_bonus = random.randint(0, 2)
@@ -57,6 +61,7 @@ class ManaOrb(equipment.EquipmentStats):
         return self
 
     def common_mana_orb_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_mana_orb_name()
         self.armour = random.randint(30, 50)
         self.strength_bonus = random.randint(0, 1)
@@ -64,6 +69,7 @@ class ManaOrb(equipment.EquipmentStats):
         return self
 
     def rare_mana_orb_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_mana_orb_name()
         self.armour = random.randint(60, 80)
         self.strength_bonus = random.randint(0, 4)

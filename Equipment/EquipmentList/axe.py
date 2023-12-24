@@ -27,23 +27,27 @@ class Axe(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_axe_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_axe_name()
         self.damage = random.randint(1, 3)
         return self
 
     def rare_axe_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_axe_name()
         self.damage = random.randint(3, 5)
         self.strength_bonus = random.randint(0, 2)
         return self
 
     def common_axe_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_axe_name()
         self.damage = random.randint(3, 6)
         self.strength_bonus = random.randint(0, 2)
         return self
 
     def rare_axe_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_axe_name()
         self.damage = random.randint(5, 8)
         self.strength_bonus = random.randint(1, 3)
@@ -51,12 +55,14 @@ class Axe(equipment.EquipmentStats):
         return self
 
     def common_axe_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_axe_name()
         self.damage = random.randint(6, 10)
         self.strength_bonus = random.randint(0, 3)
         return self
 
     def rare_axe_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_axe_name()
         self.damage = random.randint(10, 15)
         self.strength_bonus = random.randint(3, 6)

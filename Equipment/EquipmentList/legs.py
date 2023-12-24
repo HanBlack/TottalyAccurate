@@ -27,20 +27,23 @@ class Legs(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_legs_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_legs_name()
         self.armour = random.randint(5, 15)
         return self
 
     def rare_legs_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_legs_name()
         self.armour = random.randint(2, 30)
-        self.strength_bonus = random.randint(0, 1)
-        self.dexterity_bonus = random.randint(0, 1)
+        self.strength_bonus = random.randint(1, 2)
+        self.dexterity_bonus = random.randint(1, 2)
         self.hp_bonus = random.randint(0, 5)
         self.mp_bonus = random.randint(0, 2)
         return self
 
     def common_legs_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_legs_name()
         self.armour = random.randint(15, 30)
         self.strength_bonus = random.randint(0, 1)
@@ -48,15 +51,17 @@ class Legs(equipment.EquipmentStats):
         return self
 
     def rare_legs_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_legs_name()
         self.armour = random.randint(30, 60)
-        self.strength_bonus = random.randint(0, 2)
-        self.dexterity_bonus = random.randint(0, 2)
+        self.strength_bonus = random.randint(1, 4)
+        self.dexterity_bonus = random.randint(1, 4)
         self.hp_bonus = random.randint(0, 10)
         self.mp_bonus = random.randint(0, 5)
         return self
 
     def common_legs_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_legs_name()
         self.armour = random.randint(30, 50)
         self.strength_bonus = random.randint(0, 2)
@@ -64,10 +69,11 @@ class Legs(equipment.EquipmentStats):
         return self
 
     def rare_legs_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_legs_name()
         self.armour = random.randint(60, 80)
-        self.strength_bonus = random.randint(0, 4)
-        self.dexterity_bonus = random.randint(0, 4)
+        self.strength_bonus = random.randint(1, 8)
+        self.dexterity_bonus = random.randint(1, 8)
         self.hp_bonus = random.randint(0, 20)
         self.mp_bonus = random.randint(0, 10)
         return self

@@ -27,11 +27,13 @@ class Staff(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_staff_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_staff_name()
         self.damage = random.randint(1, 3)
         return self
 
     def rare_staff_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_staff_name()
         self.damage = random.randint(3, 5)
         self.strength_bonus = random.randint(0, 1)
@@ -39,6 +41,7 @@ class Staff(equipment.EquipmentStats):
         return self
 
     def common_staff_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_staff_name()
         self.damage = random.randint(3, 6)
         self.strength_bonus = random.randint(0, 1)
@@ -46,6 +49,7 @@ class Staff(equipment.EquipmentStats):
         return self
 
     def rare_staff_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_staff_name()
         self.damage = random.randint(5, 8)
         self.strength_bonus = random.randint(0, 2)
@@ -55,6 +59,7 @@ class Staff(equipment.EquipmentStats):
         return self
 
     def common_staff_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_staff_name()
         self.damage = random.randint(6, 10)
         self.strength_bonus = random.randint(0, 2)
@@ -62,6 +67,7 @@ class Staff(equipment.EquipmentStats):
         return self
 
     def rare_staff_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_staff_name()
         self.damage = random.randint(10, 15)
         self.strength_bonus = random.randint(0, 4)

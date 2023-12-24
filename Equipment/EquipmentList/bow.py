@@ -27,23 +27,27 @@ class Bow(equipment.EquipmentStats):
         self.mp_bonus = None
 
     def common_bow_lvl_1_to_15(self):
+        self.reset_values()
         self.name = normal_generate_bow_name()
         self.damage = random.randint(1, 3)
         return self
 
     def rare_bow_lvl_1_to_15(self):
+        self.reset_values()
         self.name = rare_generate_bow_name()
         self.damage = random.randint(3, 5)
         self.dexterity_bonus = random.randint(0, 2)
         return self
 
     def common_bow_lvl_15_to_30(self):
+        self.reset_values()
         self.name = normal_generate_bow_name()
         self.damage = random.randint(3, 6)
         self.dexterity_bonus = random.randint(0, 2)
         return self
 
     def rare_bow_lvl_15_to_30(self):
+        self.reset_values()
         self.name = rare_generate_bow_name()
         self.damage = random.randint(5, 8)
         self.dexterity_bonus = random.randint(0, 3)
@@ -51,12 +55,14 @@ class Bow(equipment.EquipmentStats):
         return self
 
     def common_bow_lvl_30_and_more(self):
+        self.reset_values()
         self.name = normal_generate_bow_name()
         self.damage = random.randint(6, 10)
         self.dexterity_bonus = random.randint(0, 3)
         return self
 
     def rare_bow_lvl_30_and_more(self):
+        self.reset_values()
         self.name = rare_generate_bow_name()
         self.damage = random.randint(10, 15)
         self.dexterity_bonus = random.randint(3, 6)
