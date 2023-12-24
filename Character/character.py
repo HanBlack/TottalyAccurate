@@ -104,62 +104,93 @@ class Character:
         else:
             self._level = value
 
-    def increase_experience(self, amount):
-        self._experience += amount
-        while self._experience >= self.calculate_experience_needed_for_next_level():
-            self.level_up()
+    @staticmethod
+    def create_character(character_class):
+        character_classes = {
+            'warrior': Warrior,
+            'rogue': Rogue,
+            'mage': Mage,
+            'cleric': Cleric,
+            'hunter': Hunter,
+            'necromancer': Necromancer,
+            'monk': Monk,
+            'assassin': Assassin,
+            'paladin': Paladin,
+            'shaman': Shaman,
+            'druid': Druid,
 
-    def calculate_experience_needed_for_next_level(self):
-        return (150 * self.level) + self.strength + self.dexterity + self.intelligence + random.randint(1, 5)
+        }
+        if character_class not in character_classes:
+            raise ValueError(f"Invalid character class: {character_class}")
 
-    def level_up(self):
-        experience_required = self.calculate_experience_needed_for_next_level()
-        print(experience_required)
-        if self._experience >= experience_required:
-            self._experience -= experience_required
-            self.level += 1
-            return True
-        else:
-            return False
+        new_character = character_classes[character_class]()
+        return new_character
 
-    def gain_experience_from_enemy(self, enemy):
-        experience_gained = echaracter.ECharacter.calculate_total_experience(enemy)
-        self.increase_experience(experience_gained)
-        print(f"{self.name} gained {experience_gained} experience from defeating {enemy.name}!")
 
-    def calculate_character_damage(self):
-        primary_damage_deal_attribute = max(self.strength, self.dexterity, self.intelligence)
+def increase_experience(self, amount):
+    self._experience += amount
+    while self._experience >= self.calculate_experience_needed_for_next_level():
+        self.level_up()
 
-        if self.check_if_player_scored_critical_hit():
-            primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
-        if self.equipment.weapon:
-            return int((primary_damage_deal_attribute / 5) + self.equipment.weapon.damage) + random.randint(-1, 1) +300
-        else:
-            return int(primary_damage_deal_attribute)
 
-    def calculate_character_armor_value(self):
-        total_armour = 0
-        for slot in [self.equipment.head, self.equipment.chest, self.equipment.legs, self.equipment.boots,
-                     self.equipment.hands, self.equipment.offhand]:
-            if slot and slot.armour:
-                total_armour += slot.armour
-        return total_armour
+def calculate_experience_needed_for_next_level(self):
+    return (150 * self.level) + self.strength + self.dexterity + self.intelligence + random.randint(1, 5)
 
-    def calculate_character_damage_reduction(self):
-        armor = self.calculate_character_armor_value()
-        return int(armor * 0.1)
 
-    def calculate_player_critical_chance(self):
-        base_chance = self.dexterity * 0.1
-        level_modifier = 1 + (self.level * 0.05)
-        chance_to_crit = base_chance * level_modifier
-        chance_to_crit = min(chance_to_crit, 100)
-        return chance_to_crit
+def level_up(self):
+    experience_required = self.calculate_experience_needed_for_next_level()
+    print(experience_required)
+    if self._experience >= experience_required:
+        self._experience -= experience_required
+        self.level += 1
+        return True
+    else:
+        return False
 
-    def check_if_player_scored_critical_hit(self):
-        crit_chance = self.calculate_player_critical_chance()
-        compare_number = random.randint(0, 100)
-        return compare_number <= crit_chance
+
+def gain_experience_from_enemy(self, enemy):
+    experience_gained = echaracter.ECharacter.calculate_total_experience(enemy)
+    self.increase_experience(experience_gained)
+    print(f"{self.name} gained {experience_gained} experience from defeating {enemy.name}!")
+
+
+def calculate_character_damage(self):
+    primary_damage_deal_attribute = max(self.strength, self.dexterity, self.intelligence)
+
+    if self.check_if_player_scored_critical_hit():
+        primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
+    if self.equipment.weapon:
+        return int((primary_damage_deal_attribute / 5) + self.equipment.weapon.damage) + random.randint(-1, 1) + 300
+    else:
+        return int(primary_damage_deal_attribute)
+
+
+def calculate_character_armor_value(self):
+    total_armour = 0
+    for slot in [self.equipment.head, self.equipment.chest, self.equipment.legs, self.equipment.boots,
+                 self.equipment.hands, self.equipment.offhand]:
+        if slot and slot.armour:
+            total_armour += slot.armour
+    return total_armour
+
+
+def calculate_character_damage_reduction(self):
+    armor = self.calculate_character_armor_value()
+    return int(armor * 0.1)
+
+
+def calculate_player_critical_chance(self):
+    base_chance = self.dexterity * 0.1
+    level_modifier = 1 + (self.level * 0.05)
+    chance_to_crit = base_chance * level_modifier
+    chance_to_crit = min(chance_to_crit, 100)
+    return chance_to_crit
+
+
+def check_if_player_scored_critical_hit(self):
+    crit_chance = self.calculate_player_critical_chance()
+    compare_number = random.randint(0, 100)
+    return compare_number <= crit_chance
 
 
 character = Character()
