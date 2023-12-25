@@ -1,8 +1,12 @@
+import json
+import os
+
 from EnemyCharacter import echaracter
 from random import choice
 from Equipment.EquipmentList import helmet, chest, legs, boots, hands, neck, ring, shield, axe, bow, buckler, crossbow, \
     dagger, hammer, mana_orb, staff, sword, wand
 from Equipment.inventory import inventory
+import program
 
 
 def drop_item_goblin_boss_loottable():
@@ -31,22 +35,33 @@ def drop_item_goblin_lower_evolution_loottable():
     return choice(items)
 
 
+path_variable = program.current_directory()
+
+
 def defeat_enemy_goblin_boss(boss):
+    path = path_variable
+
     if boss.hp == 0:
         dropped_item = drop_item_goblin_boss_loottable()
         inventory.add_item(dropped_item)
-        file_path = "inventory.txt"
+        class_name = type(dropped_item).__name__
+        file_path = os.path.join(path, 'Character', 'CharacterSave', 'CharacterInventory')
+        file_name = f'{dropped_item.name}.json'
+        file_path = os.path.join(file_path, file_name)
         with open(file_path, "a") as file:
-            file.write(
-                f"Name: {dropped_item.name}\n"
-                f"Damage: {dropped_item.damage}\n"
-                f"Armour: {dropped_item.armour}\n"
-                f"Strength Bonus: {dropped_item.strength_bonus}\n"
-                f"Dexterity Bonus: {dropped_item.dexterity_bonus}\n"
-                f"Intelligence Bonus: {dropped_item.intelligence_bonus}\n"
-                f"HP Bonus: {dropped_item.hp_bonus}\n"
-                f"MP Bonus: {dropped_item.mp_bonus}\n\n"
-            )
+            dropped_item_data = {
+                "Class": class_name,
+                "Name": dropped_item.name,
+                "Damage": dropped_item.damage,
+                "Armour": dropped_item.armour,
+                "Strength Bonus": dropped_item.strength_bonus,
+                "Dexterity Bonus": dropped_item.dexterity_bonus,
+                "Intelligence Bonus": dropped_item.intelligence_bonus,
+                "HP Bonus": dropped_item.hp_bonus,
+                "MP Bonus": dropped_item.mp_bonus
+            }
+            json.dump(dropped_item_data, file)
+            file.write('\n')
 
 
 class LowerEvolutionGoblin(echaracter.ECharacter):

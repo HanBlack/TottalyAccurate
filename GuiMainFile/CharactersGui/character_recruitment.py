@@ -3,8 +3,8 @@ import tkinter as tk
 from Character import character
 import random
 import os
+import program
 
-# Create default characters once at the beginning
 character_instances = {
     'warrior': character.character.create_character('warrior'),
     'rogue': character.character.create_character('rogue'),
@@ -19,6 +19,7 @@ character_instances = {
     'druid': character.character.create_character('druid')
 }
 
+
 def make_recruitment_random():
     character_classes_lowercase = list(character_instances.keys())
     population_to_recruit = random.randint(3, 6)
@@ -30,6 +31,7 @@ def make_recruitment_random():
         recruited_characters.append(class_name)
 
     return recruited_characters
+
 
 def display_character_info(player, frame, class_name):
     header_label = tk.Label(frame, text=class_name.capitalize(), font=("Arial", 12, "bold"))
@@ -51,13 +53,20 @@ def display_character_info(player, frame, class_name):
         label = tk.Label(frame, text=info)
         label.grid(row=i + 1, column=0, sticky="w")
 
+
+variable_for_path = program.current_directory()
+
+
 def recruit_character(character_class, recruit_button):
     new_character = character_instances[character_class.lower()]
-    directory = '/home/han/PycharmProjects/TottalyAccurate/Character/CharacterSave'
-    file_name = f"{new_character.name}.json"
+    class_name = type(new_character).__name__
+    path = variable_for_path
+    directory = os.path.join(path, 'Character', 'CharacterSave')
+    file_name = f"{class_name}_{new_character.name}.json"
     file_path = os.path.join(directory, file_name)
     with open(file_path, 'a') as file:
         character_data = {
+            "class": class_name,
             "name": new_character.name,
             "hp": new_character.hp,
             "mp": new_character.mp,
@@ -73,6 +82,7 @@ def recruit_character(character_class, recruit_button):
         file.write('\n')
 
     recruit_button.config(state=tk.DISABLED)
+
 
 def create_character_spreed_sheet_for_recruit(frame, class_name, row_position, column_position):
     class_frame = tk.Frame(frame)
@@ -92,10 +102,10 @@ def create_character_spreed_sheet_for_recruit(frame, class_name, row_position, c
     )
     recruit_button.grid(row=1, column=0, pady=5, sticky="w")
 
-    # Update the lambda function to pass the button instance
     recruit_button.configure(command=lambda cn=class_name.lower(), btn=recruit_button: recruit_character(cn, btn))
 
     return row_position + 1 if (column_position + 1) % 4 == 0 else row_position, (column_position + 1) % 4
+
 
 def character_recruit_gui_run():
     root = tk.Tk()

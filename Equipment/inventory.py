@@ -1,12 +1,8 @@
-from Character import character
-
-
 class Inventory:
     def __init__(self):
         self.items = []
 
     def add_item(self, item):
-        # Check if the item is already in the inventory
         item_already_exists = any(existing_item.name == item.name for existing_item in self.items)
 
         if not item_already_exists:
@@ -38,13 +34,7 @@ class Inventory:
         with open(file_path, "r") as file:
             for line in file:
                 slot, item_name = line.strip().split(": ")
-                # You need to create instances of equipment based on the loaded item_name
-                # For instance, if you have classes like Helmet, Sword, etc., create instances based on the item_name
-                # Example: self.head = Helmet() or self.weapon = Sword()
-                # This is just a placeholder and might vary based on your implementation
-
-                # Assign the loaded items to respective equipment slots
-                setattr(self, slot, item_name)  # For demonstration, this assumes item_name is the name of the equipment
+                setattr(self, slot, item_name)
 
 
 inventory = Inventory()
