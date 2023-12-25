@@ -1,9 +1,9 @@
 import tkinter as tk
-from GuiMainFile.CharactersGui import characters_gui
+from GuiMainFile.CharactersGui import character_recruitment
 
 
 def open_characters_window():
-    characters_gui.character_recruit_gui_run()
+    character_recruitment.character_recruit_gui_run()
 
 
 def open_recruit_characters(main_window):

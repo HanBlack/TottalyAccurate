@@ -31,6 +31,18 @@ class Equipment:
                 if item:
                     file.write(f"{slot}: {item.name}\n")
 
+    def dictionary_for_items(self):
+        return {
+            "head": self.head,
+            "chest": self.chest,
+            "legs": self.legs,
+            "boots": self.boots,
+            "hands": self.hands,
+            "weapon": self.weapon,
+            "offhand": self.offhand,
+            "neck": self.neck,
+            "ring": self.ring
+        }
     # def load_equipped_gear_from_file(self, file_path):
 
     # Code to load the character's currently equipped gear from a file

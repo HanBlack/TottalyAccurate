@@ -381,3 +381,14 @@ class Druid(Character):
 
 
 druid = Druid()
+
+
+class Party:
+    def __init__(self):
+        self.characters = []
+
+    def recruit_character(self, new_character):
+        self.characters.append(new_character)
+
+
+party = Party()
