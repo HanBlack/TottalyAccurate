@@ -2,6 +2,7 @@ import tkinter as tk
 from GuiMainFile.CharactersGui import character_recruitment, party_gui, party_inventory_gui
 
 
+
 def open_characters_window():
     character_recruitment.character_recruit_gui_run()
 

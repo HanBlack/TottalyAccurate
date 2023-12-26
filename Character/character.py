@@ -20,6 +20,7 @@ class Character:
         self.level = 0
         self.statusEffect = None
         self.equipment = Equipment()
+        self.character_class = ""
 
     @property
     def hp(self):

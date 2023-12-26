@@ -50,15 +50,15 @@ def defeat_enemy_goblin_boss(boss):
         file_path = os.path.join(file_path, file_name)
         with open(file_path, "a") as file:
             dropped_item_data = {
-                "Class": class_name,
-                "Name": dropped_item.name,
-                "Damage": dropped_item.damage,
-                "Armour": dropped_item.armour,
-                "Strength Bonus": dropped_item.strength_bonus,
-                "Dexterity Bonus": dropped_item.dexterity_bonus,
-                "Intelligence Bonus": dropped_item.intelligence_bonus,
-                "HP Bonus": dropped_item.hp_bonus,
-                "MP Bonus": dropped_item.mp_bonus
+                "class": class_name,
+                "name": dropped_item.name,
+                "damage": dropped_item.damage,
+                "armour": dropped_item.armour,
+                "strength_bonus": dropped_item.strength_bonus,
+                "dexterity_bonus": dropped_item.dexterity_bonus,
+                "intelligence_bonus": dropped_item.intelligence_bonus,
+                "hp_bonus": dropped_item.hp_bonus,
+                "mp_bonus": dropped_item.mp_bonus
             }
             json.dump(dropped_item_data, file)
             file.write('\n')

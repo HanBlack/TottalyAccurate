@@ -1,22 +1,22 @@
 import json
 import tkinter as tk
-from Character import character
+from Character.character import Character
 import random
 import os
 import program
 
 character_instances = {
-    'warrior': character.character.create_character('warrior'),
-    'rogue': character.character.create_character('rogue'),
-    'mage': character.character.create_character('mage'),
-    'cleric': character.character.create_character('cleric'),
-    'hunter': character.character.create_character('hunter'),
-    'necromancer': character.character.create_character('necromancer'),
-    'monk': character.character.create_character('monk'),
-    'assassin': character.character.create_character('assassin'),
-    'paladin': character.character.create_character('paladin'),
-    'shaman': character.character.create_character('shaman'),
-    'druid': character.character.create_character('druid')
+    'warrior': Character.create_character('warrior'),
+    'rogue': Character.create_character('rogue'),
+    'mage': Character.create_character('mage'),
+    'cleric': Character.create_character('cleric'),
+    'hunter': Character.create_character('hunter'),
+    'necromancer': Character.create_character('necromancer'),
+    'monk': Character.create_character('monk'),
+    'assassin': Character.create_character('assassin'),
+    'paladin': Character.create_character('paladin'),
+    'shaman': Character.create_character('shaman'),
+    'druid': Character.create_character('druid')
 }
 
 
@@ -56,6 +56,8 @@ def display_character_info(player, frame, class_name):
 
 variable_for_path = program.current_directory()
 
+character = Character()
+
 
 def recruit_character(character_class, recruit_button):
     new_character = character_instances[character_class.lower()]
@@ -64,19 +66,32 @@ def recruit_character(character_class, recruit_button):
     directory = os.path.join(path, 'Character', 'CharacterSave')
     file_name = f"{class_name}_{new_character.name}.json"
     file_path = os.path.join(directory, file_name)
+
+    character = Character(character_class=class_name)
+    character.name = new_character.name
+    character.hp = new_character.hp
+    character.mp = new_character.mp
+    character.strength = new_character.strength
+    character.dexterity = new_character.dexterity
+    character.intelligence = new_character.intelligence
+    character.experience = new_character.experience
+    character.level = new_character.level
+    character.statusEffect = new_character.statusEffect
+    character.equipment = new_character.equipment
+
     with open(file_path, 'a') as file:
         character_data = {
-            "class": class_name,
-            "name": new_character.name,
-            "hp": new_character.hp,
-            "mp": new_character.mp,
-            "strength": new_character.strength,
-            "dexterity": new_character.dexterity,
-            "intelligence": new_character.intelligence,
-            "experience": new_character.experience,
-            "level": new_character.level,
-            "statusEffect": new_character.statusEffect,
-            "equipment": new_character.equipment.dictionary_for_items()
+            "class": character.character_class,
+            "name": character.name,
+            "hp": character.hp,
+            "mp": character.mp,
+            "strength": character.strength,
+            "dexterity": character.dexterity,
+            "intelligence": character.intelligence,
+            "experience": character.experience,
+            "level": character.level,
+            "statusEffect": character.statusEffect,
+            "equipment": character.equipment.dictionary_for_items()
         }
         json.dump(character_data, file)
         file.write('\n')
