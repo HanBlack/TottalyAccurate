@@ -64,9 +64,9 @@ def recruit_character(character_class, recruit_button):
     class_name = type(new_character).__name__
     path = variable_for_path
     directory = os.path.join(path, 'Character', 'CharacterSave')
-    file_name = f"{class_name}_{new_character.name}.json"
+    file_name = f"{new_character.name}.json"
     file_path = os.path.join(directory, file_name)
-
+    print(class_name)
     character = Character(character_class=class_name)
     character.name = new_character.name
     character.hp = new_character.hp
@@ -81,7 +81,7 @@ def recruit_character(character_class, recruit_button):
 
     with open(file_path, 'a') as file:
         character_data = {
-            "class": character.character_class,
+            "class": class_name,
             "name": character.name,
             "hp": character.hp,
             "mp": character.mp,
@@ -91,7 +91,7 @@ def recruit_character(character_class, recruit_button):
             "experience": character.experience,
             "level": character.level,
             "statusEffect": character.statusEffect,
-            "equipment": character.equipment.dictionary_for_items()
+            "equipment": character.equipment.get_equipped_items()
         }
         json.dump(character_data, file)
         file.write('\n')

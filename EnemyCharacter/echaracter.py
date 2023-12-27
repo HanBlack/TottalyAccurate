@@ -16,7 +16,6 @@ class ECharacter:
     def hp(self):
         return self._hp
 
-    # Validation of hp
     @hp.setter
     def hp(self, value):
         if value < 0:
@@ -101,20 +100,20 @@ class ECharacter:
 
         if self.check_if_enemy_scored_critical_hit():
             primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
+
         if primary_damage_deal_attribute <= 5:
-            minimal_damage_done = primary_damage_deal_attribute - 1
-            maximal_damage_done = primary_damage_deal_attribute + 1
-            return int(random.randint(minimal_damage_done, maximal_damage_done))
+            minimal_damage_done = int(primary_damage_deal_attribute) - 1
+            maximal_damage_done = int(primary_damage_deal_attribute) + 1
         elif 5 <= primary_damage_deal_attribute <= 15:
-            minimal_damage_done = primary_damage_deal_attribute - 2
-            maximal_damage_done = primary_damage_deal_attribute + 2
-            return int(random.randint(minimal_damage_done, maximal_damage_done))
+            minimal_damage_done = int(primary_damage_deal_attribute) - 2
+            maximal_damage_done = int(primary_damage_deal_attribute) + 2
         elif 15 <= primary_damage_deal_attribute <= 30:
-            minimal_damage_done = primary_damage_deal_attribute - 4
-            maximal_damage_done = primary_damage_deal_attribute + 4
-            return int(random.randint(minimal_damage_done, maximal_damage_done))
+            minimal_damage_done = int(primary_damage_deal_attribute) - 4
+            maximal_damage_done = int(primary_damage_deal_attribute) + 4
         else:
             return int(primary_damage_deal_attribute)
+
+        return random.randint(minimal_damage_done, maximal_damage_done)
 
     def calculate_enemy_critical_chance(self):
         base_chance = self.dexterity * 0.1

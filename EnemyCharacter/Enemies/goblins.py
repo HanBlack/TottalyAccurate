@@ -1,24 +1,24 @@
 import json
 import os
+import random
 
 from EnemyCharacter import echaracter
 from random import choice
 from Equipment.EquipmentList import helmet, chest, legs, boots, hands, neck, ring, shield, axe, bow, buckler, crossbow, \
     dagger, hammer, mana_orb, staff, sword, wand
-from Equipment.inventory import inventory
 import program
 
 
 def drop_item_goblin_boss_loottable():
-    items = [helmet.helmet.rare_helmets_lvl_1_to_15(), chest.chest.rare_chest_lvl_1_to_15(),
-             legs.legs.rare_legs_lvl_1_to_15(), boots.boots.rare_boots_lvl_1_to_15(),
-             ring.ring.rare_ring_lvl_1_to_15(), neck.neck.rare_neck_lvl_1_to_15(),
-             sword.sword.rare_sword_lvl_1_to_15(), axe.axe.rare_axe_lvl_1_to_15(),
-             dagger.dagger.rare_dagger_lvl_1_to_15(), bow.bow.rare_bow_lvl_1_to_15(),
-             staff.staff.rare_staff_lvl_15_to_30(), crossbow.crossbow.rare_crossbow_lvl_1_to_15(),
-             hammer.hammer.rare_hammer_lvl_1_to_15(), wand.wand.rare_wand_lvl_1_to_15(),
-             buckler.buckler.rare_buckler_lvl_1_to_15(), shield.shield.rare_shield_lvl_1_to_15(),
-             mana_orb.mana_orb.rare_mana_orb_lvl_1_to_15(), hands.hands.rare_hands_lvl_1_to_15()]
+    items = [helmet.helmet.rare_helmets_lvl_15_to_30(), chest.chest.rare_chest_lvl_15_to_30(),
+             legs.legs.rare_legs_lvl_15_to_30(), boots.boots.rare_boots_lvl_15_to_30(),
+             ring.ring.rare_ring_lvl_15_to_30(), neck.neck.rare_neck_lvl_15_to_30(),
+             sword.sword.rare_sword_lvl_15_to_30(), axe.axe.rare_axe_lvl_15_to_30(),
+             dagger.dagger.rare_dagger_lvl_15_to_30(), bow.bow.rare_bow_lvl_15_to_30(),
+             staff.staff.rare_staff_lvl_15_to_30(), crossbow.crossbow.rare_crossbow_lvl_15_to_30(),
+             hammer.hammer.rare_hammer_lvl_15_to_30(), wand.wand.rare_wand_lvl_15_to_30(),
+             buckler.buckler.rare_buckler_lvl_15_to_30(), shield.shield.rare_shield_lvl_15_to_30(),
+             mana_orb.mana_orb.rare_mana_orb_lvl_15_to_30(), hands.hands.rare_hands_lvl_15_to_30()]
     return choice(items)
 
 
@@ -28,10 +28,35 @@ def drop_item_goblin_lower_evolution_loottable():
              ring.ring.common_ring_lvl_1_to_15(), neck.neck.common_neck_lvl_1_to_15(),
              sword.sword.common_sword_lvl_1_to_15(), axe.axe.common_axe_lvl_1_to_15(),
              dagger.dagger.common_dagger_lvl_1_to_15(), bow.bow.common_bow_lvl_1_to_15(),
-             staff.staff.common_staff_lvl_15_to_30(), crossbow.crossbow.common_crossbow_lvl_1_to_15(),
+             staff.staff.common_staff_lvl_1_to_15(), crossbow.crossbow.common_crossbow_lvl_1_to_15(),
              hammer.hammer.common_hammer_lvl_1_to_15(), wand.wand.common_wand_lvl_1_to_15(),
              buckler.buckler.common_buckler_lvl_1_to_15(), shield.shield.common_shield_lvl_1_to_15(),
              mana_orb.mana_orb.common_mana_orb_lvl_1_to_15(), hands.hands.common_hands_lvl_1_to_15()]
+    return choice(items)
+
+
+def drop_item_goblin_middle_evolution_loottable():
+    items = [helmet.helmet.rare_helmets_lvl_1_to_15(), chest.chest.rare_chest_lvl_1_to_15(),
+             legs.legs.rare_legs_lvl_1_to_15(), boots.boots.rare_boots_lvl_1_to_15(),
+             ring.ring.rare_ring_lvl_1_to_15(), neck.neck.rare_neck_lvl_1_to_15(),
+             sword.sword.rare_sword_lvl_1_to_15(), axe.axe.rare_axe_lvl_1_to_15(),
+             dagger.dagger.rare_dagger_lvl_1_to_15(), bow.bow.rare_bow_lvl_1_to_15(),
+             staff.staff.rare_staff_lvl_1_to_15(), crossbow.crossbow.rare_crossbow_lvl_1_to_15(),
+             hammer.hammer.rare_hammer_lvl_1_to_15(), wand.wand.rare_wand_lvl_1_to_15(),
+             buckler.buckler.rare_buckler_lvl_1_to_15(), shield.shield.rare_shield_lvl_1_to_15(),
+             mana_orb.mana_orb.rare_mana_orb_lvl_1_to_15(), hands.hands.rare_hands_lvl_1_to_15()]
+    return choice(items)
+
+def drop_item_goblin_higher_evolution_loottable():
+    items = [helmet.helmet.common_helmets_lvl_15_to_30(), chest.chest.common_chest_lvl_15_to_30(),
+             legs.legs.common_legs_lvl_15_to_30(), boots.boots.common_boots_lvl_15_to_30(),
+             ring.ring.common_ring_lvl_15_to_30(), neck.neck.common_neck_lvl_15_to_30(),
+             sword.sword.common_sword_lvl_15_to_30(), axe.axe.common_axe_lvl_15_to_30(),
+             dagger.dagger.common_dagger_lvl_15_to_30(), bow.bow.common_bow_lvl_15_to_30(),
+             staff.staff.common_staff_lvl_15_to_30(), crossbow.crossbow.common_crossbow_lvl_15_to_30(),
+             hammer.hammer.common_hammer_lvl_15_to_30(), wand.wand.common_wand_lvl_15_to_30(),
+             buckler.buckler.common_buckler_lvl_15_to_30(), shield.shield.common_shield_lvl_15_to_30(),
+             mana_orb.mana_orb.common_mana_orb_lvl_15_to_30(), hands.hands.common_hands_lvl_15_to_30()]
     return choice(items)
 
 
@@ -43,7 +68,6 @@ def defeat_enemy_goblin_boss(boss):
 
     if boss.hp == 0:
         dropped_item = drop_item_goblin_boss_loottable()
-        inventory.add_item(dropped_item)
         class_name = type(dropped_item).__name__
         file_path = os.path.join(path, 'Character', 'CharacterSave', 'CharacterInventory')
         file_name = f'{dropped_item.name}.json'
@@ -168,6 +192,20 @@ class LowerEvolutionGoblin(echaracter.ECharacter):
         self.level = 1
         return self
 
+    @staticmethod
+    def entrance_cave():
+        goblins = [LowerEvolutionGoblin().snik_stat_set(),
+                   LowerEvolutionGoblin().dribblet_stat_set(),
+                   LowerEvolutionGoblin().goblet_stat_set(),
+                   LowerEvolutionGoblin().snaggletooth_stat_set(),
+                   LowerEvolutionGoblin().wizzletoe_stat_set(),
+                   LowerEvolutionGoblin().goblinkin_stat_set(),
+                   LowerEvolutionGoblin().snaglet_stat_set(),
+                   LowerEvolutionGoblin().glimmerkin_stat_set(),
+                   LowerEvolutionGoblin().sniknose_stat_set()]
+        chosen_goblin = random.choice(goblins)
+        return chosen_goblin
+
 
 class MiddleEvolutionGoblin(echaracter.ECharacter):
     def __init__(self):
@@ -262,6 +300,20 @@ class MiddleEvolutionGoblin(echaracter.ECharacter):
         self.intelligence = 3
         self.level = 2
         return self
+
+    @staticmethod
+    def lower_cave():
+        goblins = [MiddleEvolutionGoblin().snikkle_stat_set(),
+                   MiddleEvolutionGoblin().grobok_stat_set(),
+                   MiddleEvolutionGoblin().snaggle_stat_set(),
+                   MiddleEvolutionGoblin().zoglink_stat_set(),
+                   MiddleEvolutionGoblin().gnarble_stat_set(),
+                   MiddleEvolutionGoblin().snigwort_stat_set(),
+                   MiddleEvolutionGoblin().wizzle_stat_set(),
+                   MiddleEvolutionGoblin().goblimp_stat_set(),
+                   MiddleEvolutionGoblin().grunk_stat_set()]
+        chosen_goblin = random.choice(goblins)
+        return chosen_goblin
 
 
 class HigherEvolutionGoblin(echaracter.ECharacter):
@@ -368,6 +420,21 @@ class HigherEvolutionGoblin(echaracter.ECharacter):
         self.level = 5
         return self
 
+    @staticmethod
+    def deep_cave():
+        goblins = [HigherEvolutionGoblin().snarltooth_stat_set(),
+                   HigherEvolutionGoblin().rumblefist_stat_set(),
+                   HigherEvolutionGoblin().gorknash_stat_set(),
+                   HigherEvolutionGoblin().kragnash_stat_set(),
+                   HigherEvolutionGoblin().grimsnarl_stat_set(),
+                   HigherEvolutionGoblin().grobthar_stat_set(),
+                   HigherEvolutionGoblin().thraggle_stat_set(),
+                   HigherEvolutionGoblin().zilgok_stat_set(),
+                   HigherEvolutionGoblin().sniklash_stat_set(),
+                   HigherEvolutionGoblin().vargnash_stat_set()]
+        chosen_goblin = random.choice(goblins)
+        return chosen_goblin
+
 
 class BossEvolutionGoblin(echaracter.ECharacter):
     def __init__(self):
@@ -405,3 +472,11 @@ class BossEvolutionGoblin(echaracter.ECharacter):
         self.level = 12
         self.statusEffect = "Fury Swipe"  # life steal by damage deal
         return self
+
+    @staticmethod
+    def boss_room():
+        boss_goblins = [BossEvolutionGoblin().grommok_the_tyrant_stat_set(),
+                        BossEvolutionGoblin().zargoth_the_unbreakable_stat_set(),
+                        BossEvolutionGoblin().morgul_the_devourer_stat_set()]
+        chosen_boss_goblin = random.choice(boss_goblins)
+        return chosen_boss_goblin

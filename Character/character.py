@@ -9,7 +9,8 @@ fake = Faker()
 
 
 class Character:
-    def __init__(self):
+    def __init__(self, character_class=None, **kwargs):
+        self.character_class = character_class
         self.name = ""
         self.hp = 0
         self.mp = 0
@@ -137,10 +138,13 @@ class Character:
 
     def level_up(self):
         experience_required = self.calculate_experience_needed_for_next_level()
-        print(experience_required)
         if self._experience >= experience_required:
             self._experience -= experience_required
             self.level += 1
+            self.strength += 3
+            self.dexterity += 3
+            self.intelligence += 3
+            print(f"{self.name} leveled up to level {self.level}!")
             return True
         else:
             return False
@@ -148,24 +152,34 @@ class Character:
     def gain_experience_from_enemy(self, enemy):
         experience_gained = echaracter.ECharacter.calculate_total_experience(enemy)
         self.increase_experience(experience_gained)
-        print(f"{self.name} gained {experience_gained} experience from defeating {enemy.name}!")
 
     def calculate_character_damage(self):
         primary_damage_deal_attribute = max(self.strength, self.dexterity, self.intelligence)
 
         if self.check_if_player_scored_critical_hit():
             primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
-        if self.equipment.weapon:
-            return int((primary_damage_deal_attribute / 5) + self.equipment.weapon.damage) + random.randint(-1, 1) + 300
+
+        if self.equipment.weapon and "damage" in self.equipment.weapon:  # Check if the weapon has a damage attribute
+            weapon_damage = self.equipment.weapon["damage"]
+            if weapon_damage is not None:  # Ensure the damage value is not None
+                return int((primary_damage_deal_attribute / 5) + weapon_damage) + random.randint(-1, 1)
+            else:
+                return int(primary_damage_deal_attribute)
         else:
             return int(primary_damage_deal_attribute)
 
     def calculate_character_armor_value(self):
         total_armour = 0
-        for slot in [self.equipment.head, self.equipment.chest, self.equipment.legs, self.equipment.boots,
-                     self.equipment.hands, self.equipment.offhand]:
-            if slot and slot.armour:
-                total_armour += slot.armour
+
+        equipment_slots = ["head", "chest", "legs", "boots", "hands", "weapon", "offhand", "neck", "ring"]
+
+        for slot in equipment_slots:
+            item_data = getattr(self.equipment, slot)
+            if item_data and "armour" in item_data:
+                armour_value = item_data["armour"]
+                if armour_value is not None:
+                    total_armour += armour_value
+
         return total_armour
 
     def calculate_character_damage_reduction(self):
@@ -183,6 +197,19 @@ class Character:
         crit_chance = self.calculate_player_critical_chance()
         compare_number = random.randint(0, 100)
         return compare_number <= crit_chance
+
+    def set_from_friendly_character(self, friendly_character):
+        self.name = friendly_character.name
+        self.hp = friendly_character.hp
+        self.mp = friendly_character.mp
+        self.strength = friendly_character.strength
+        self.dexterity = friendly_character.dexterity
+        self.intelligence = friendly_character.intelligence
+        self.experience = friendly_character.experience
+        self.level = friendly_character.level
+        self.statusEffect = friendly_character.statusEffect
+        self.equipment = friendly_character.equipment
+        self.character_class = friendly_character.character_class
 
 
 character = Character()

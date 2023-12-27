@@ -1,0 +1,26 @@
+{
+    "class": "Paladin",
+    "name": "Christopher Schmidt",
+    "hp": 50,
+    "mp": 30,
+    "strength": 13,
+    "dexterity": 5,
+    "intelligence": 6,
+    "experience": 0,
+    "level": 0,
+    "statusEffect": null,
+    "equipment": {
+        "weapon": {
+            "item_class": "Axe",
+            "name": "Broken Axe of the Barrier",
+            "damage": 2,
+            "armour": null,
+            "strength_bonus": null,
+            "dexterity_bonus": null,
+            "intelligence_bonus": null,
+            "hp_bonus": null,
+            "mp_bonus": null
+        }
+    },
+    "character_class": "Paladin"
+}
