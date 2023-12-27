@@ -25,19 +25,16 @@ equipment = Equipment()
 
 
 def party_gui(root):
-    def on_closing():
-        window.destroy()  # Destroy the Toplevel window
-        root.deiconify()  # Show the main window again
-
-    window = tk.Toplevel(root)
-    window.title("Character Inventory GUI")
-
     valid_path = program.current_directory()
     characters_directory_path = os.path.join(valid_path, 'Character', 'CharacterSave')
     items_directory_path = os.path.join(valid_path, 'Character', 'CharacterSave', 'CharacterInventory')
 
     loaded_items = open_file_to_get_items(items_directory_path)
     loaded_characters = open_file_to_get_characters(characters_directory_path)
+
+    def on_character_selected(event):
+        selected_character_name = character_combobox.get()
+        display_character_stats(selected_character_name)
 
     def display_character_stats(selected_character_name):
         for character in loaded_characters:
@@ -54,6 +51,7 @@ def party_gui(root):
                                                   f"Experience: {character.experience}\n"
                                                   f"Level: {character.level}\n"
                                                   f"Status Effect: {character.statusEffect}")
+                display_equipped_item_stats(selected_character_name)  # Update equipped item stats
                 break
 
     def display_equipped_item_stats(selected_character_name):
@@ -67,8 +65,8 @@ def party_gui(root):
                             equipped_items_text += f"Slot: {slot}, Name: {item['name']}\n"
                         else:
                             equipped_items_text += f"Slot: {slot}, Name: {item.name}\n"
-            equipped_item_stats_label.config(text=equipped_items_text)
-            break
+                equipped_item_stats_label.config(text=equipped_items_text)
+                break
 
     def equip_item(event=None):
         selected_character_name = character_combobox.get()
@@ -97,8 +95,7 @@ def party_gui(root):
 
         for character in loaded_characters:
             if character.name == selected_character_name:
-                character.equipment.unequip_item(
-                    selected_slot.lower())
+                character.equipment.unequip_item(selected_slot.lower())
                 break
 
         display_character_stats(selected_character_name)
@@ -148,56 +145,72 @@ def party_gui(root):
                     print(f"Saved character '{character.name}' along with equipped items to '{character_file_path}'")
                 break
 
-    character_frame = ttk.Frame(window)
-    character_frame.pack(pady=10)
+    def on_closing():
+        window.destroy()  # Destroy the Toplevel window
+        root.deiconify()  # Show the main window again
+
+    window = tk.Toplevel(root)
+    window.title("Character Inventory GUI")
+    window.columnconfigure(0, weight=1)
+
+    main_frame = ttk.Frame(window)
+    main_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+
+    character_frame = ttk.Frame(main_frame)
+    character_frame.grid(row=0, column=0, rowspan=2, padx=5, pady=5, sticky="nsew")
 
     if loaded_characters:
-        character_label = ttk.Label(character_frame, text="Select Character", style="Bold.TLabel")
-        character_label.grid(row=0, column=0, padx=5, pady=5)
+        character_label = ttk.Label(character_frame, text="Select Character", font=("Arial", 12, "bold"))
+        character_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
         character_combobox = ttk.Combobox(character_frame, values=[character.name for character in loaded_characters])
-        character_combobox.grid(row=0, column=1, padx=5, pady=5)
-        character_combobox.bind("<<ComboboxSelected>>", lambda event: display_character_stats(character_combobox.get()))
+        character_combobox.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
+        character_combobox.bind("<<ComboboxSelected>>", on_character_selected)
         character_combobox.bind("<<ComboboxSelected>>",
                                 lambda event: display_equipped_item_stats(character_combobox.get()))
+        character_combobox.bind("<<ComboboxSelected>>",
+                                lambda event: display_character_stats(character_combobox.get()))
 
-    inventory_frame = ttk.Frame(window)
-    inventory_frame.pack(pady=10)
+    inventory_frame = ttk.Frame(main_frame)
+    inventory_frame.grid(row=0, column=1, padx=5, pady=5, sticky="nsew")
 
-    label_style = ttk.Style()
-    label_style.configure("Bold.TLabel", font=("Arial", 12, "bold"))
     selected_item = tk.StringVar()
     if loaded_items:
-        inventory_label = ttk.Label(inventory_frame, text="Select Item", style="Bold.TLabel")
-        inventory_label.grid(row=0, column=0, padx=5, pady=5)
+        inventory_label = ttk.Label(inventory_frame, text="Select Item", font=("Arial", 12, "bold"))
+        inventory_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
         item_combobox = ttk.Combobox(inventory_frame, textvariable=selected_item,
                                      values=[item.name for item in loaded_items])
-        item_combobox.grid(row=0, column=1, padx=5, pady=5)
+        item_combobox.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
         item_combobox.bind("<<ComboboxSelected>>", update_item_stats)
 
-    equipped_slot_combobox = ttk.Combobox(window,
+    equipment_frame = ttk.Frame(main_frame)
+    equipment_frame.grid(row=1, column=1, padx=5, pady=5, sticky="nsew")
+
+    equipped_slot_combobox = ttk.Combobox(equipment_frame,
                                           values=["weapon", "offhand", "head", "chest", "hands", "boots", "legs",
                                                   "neck", "ring"])
-    equipped_slot_combobox.pack()
+    equipped_slot_combobox.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
 
+    equip_button = ttk.Button(equipment_frame, text="Equip Item", command=equip_item)
+    equip_button.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
 
-    equip_button = ttk.Button(window, text="Equip Item", command=equip_item)
-    equip_button.pack(pady=5)
+    unequip_button = ttk.Button(equipment_frame, text="Unequip Item", command=unequip_item)
+    unequip_button.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
 
-    unequip_button = ttk.Button(window, text="Unequip Item", command=unequip_item)
-    unequip_button.pack(pady=5)
+    stats_frame = ttk.Frame(main_frame)
+    stats_frame.grid(row=2, column=0, columnspan=2, padx=5, pady=5, sticky="nsew")
 
-    character_stats_label = ttk.Label(window, text="Character Stats:", style="Bold.TLabel")
-    character_stats_label.pack(pady=5)
+    character_stats_label = ttk.Label(stats_frame, text="Character Stats:", font=("Arial", 12, "bold"))
+    character_stats_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
-    equipped_item_stats_label = ttk.Label(window, text="Equipped Item Stats:", style="Bold.TLabel")
-    equipped_item_stats_label.pack(pady=5)
+    equipped_item_stats_label = ttk.Label(stats_frame, text="Equipped Item Stats:", font=("Arial", 12, "bold"))
+    equipped_item_stats_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
 
-    item_stats_label = ttk.Label(window, text="Selected Item Stats:", style="Bold.TLabel")
-    item_stats_label.pack(pady=5)
+    item_stats_label = ttk.Label(stats_frame, text="Selected Item Stats:", font=("Arial", 12, "bold"))
+    item_stats_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
 
-    save_button = ttk.Button(window, text="Save Equipped Items", command=save_equipped_items)
-    save_button.pack(pady=10)
+    save_button = ttk.Button(stats_frame, text="Save Equipped Items", command=save_equipped_items)
+    save_button.grid(row=3, column=0, padx=5, pady=10, sticky="ew")
 
     window.protocol("WM_DELETE_WINDOW", on_closing)
