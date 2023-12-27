@@ -10,11 +10,11 @@
     "level": 0,
     "statusEffect": null,
     "equipment": {
-        "weapon": {
-            "item_class": "Axe",
-            "name": "Broken Axe of the Barrier",
-            "damage": 2,
-            "armour": null,
+        "neck": {
+            "item_class": "Legs",
+            "name": "Tarnished Legs of the Shelter",
+            "damage": null,
+            "armour": 10,
             "strength_bonus": null,
             "dexterity_bonus": null,
             "intelligence_bonus": null,

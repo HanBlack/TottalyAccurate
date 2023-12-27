@@ -7,7 +7,7 @@ from Character.character import warrior, rogue, mage, cleric, druid, shaman, pal
 from Character.character_load_inventory import open_file_to_get_characters, open_file_to_get_items
 import program
 import os
-from Equipment.equipment import Equipment
+from Equipment.equipment import Equipment, EquipmentStats
 
 character = Character()
 warrior_instance = warrior
@@ -24,7 +24,12 @@ necromancer = necromancer
 equipment = Equipment()
 
 
-def party_gui(window):
+def party_gui(root):
+    def on_closing():
+        window.destroy()  # Destroy the Toplevel window
+        root.deiconify()  # Show the main window again
+
+    window = tk.Toplevel(root)
     window.title("Character Inventory GUI")
 
     valid_path = program.current_directory()
@@ -62,8 +67,8 @@ def party_gui(window):
                             equipped_items_text += f"Slot: {slot}, Name: {item['name']}\n"
                         else:
                             equipped_items_text += f"Slot: {slot}, Name: {item.name}\n"
-                equipped_item_stats_label.config(text=equipped_items_text)
-                break
+            equipped_item_stats_label.config(text=equipped_items_text)
+            break
 
     def equip_item(event=None):
         selected_character_name = character_combobox.get()
@@ -75,6 +80,11 @@ def party_gui(window):
                     if item.name == selected_item_name:
                         character.equipment.equip_item(item)
                         print(f"Equipped item '{item.name}' to '{character.name}'")
+
+                        # Add a print statement specifically for legs
+                        if item.item_class == "Legs":
+                            print(f"This is a Legs item: {item.name}")
+
                         break
                 break
 
@@ -100,6 +110,8 @@ def party_gui(window):
 
         for item in loaded_items:
             if item.name == selected_item_name:
+                if isinstance(item, EquipmentStats):  # Check if it's an EquipmentStats object
+                    print(f"Legs Item - Name: {item.name}, Armour: {item.armour}")  # Print legs item details
                 item_stats_label.config(text=f"Selected Item Stats:\n"
                                              f"Name: {item.name}\n"
                                              f"Damage: {item.damage}\n"
@@ -164,8 +176,11 @@ def party_gui(window):
         item_combobox.grid(row=0, column=1, padx=5, pady=5)
         item_combobox.bind("<<ComboboxSelected>>", update_item_stats)
 
-    equipped_slot_combobox = ttk.Combobox(window, values=["weapon", "offhand", "helmet", "chest", "gloves", "boots"])
+    equipped_slot_combobox = ttk.Combobox(window,
+                                          values=["weapon", "offhand", "head", "chest", "hands", "boots", "legs",
+                                                  "neck", "ring"])
     equipped_slot_combobox.pack()
+
 
     equip_button = ttk.Button(window, text="Equip Item", command=equip_item)
     equip_button.pack(pady=5)
@@ -184,3 +199,5 @@ def party_gui(window):
 
     save_button = ttk.Button(window, text="Save Equipped Items", command=save_equipped_items)
     save_button.pack(pady=10)
+
+    window.protocol("WM_DELETE_WINDOW", on_closing)

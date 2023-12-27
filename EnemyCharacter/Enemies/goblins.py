@@ -47,6 +47,7 @@ def drop_item_goblin_middle_evolution_loottable():
              mana_orb.mana_orb.rare_mana_orb_lvl_1_to_15(), hands.hands.rare_hands_lvl_1_to_15()]
     return choice(items)
 
+
 def drop_item_goblin_higher_evolution_loottable():
     items = [helmet.helmet.common_helmets_lvl_15_to_30(), chest.chest.common_chest_lvl_15_to_30(),
              legs.legs.common_legs_lvl_15_to_30(), boots.boots.common_boots_lvl_15_to_30(),
@@ -94,9 +95,9 @@ class LowerEvolutionGoblin(echaracter.ECharacter):
 
     def snik_stat_set(self):
         self.name = "Snik Goblin"
-        self.hp = 10
+        self.hp = 30
         self.mp = 5
-        self.strength = 2
+        self.strength = 10
         self.dexterity = 3
         self.intelligence = 1
         self.level = 1
@@ -104,92 +105,92 @@ class LowerEvolutionGoblin(echaracter.ECharacter):
 
     def dribblet_stat_set(self):
         self.name = "Dribblet Goblin"
-        self.hp = 12
+        self.hp = 32
         self.mp = 6
-        self.strength = 3
-        self.dexterity = 2
-        self.intelligence = 1
+        self.strength = 13
+        self.dexterity = 5
+        self.intelligence = 11
         self.level = 1
         return self
 
     def goblet_stat_set(self):
         self.name = "Goblet Goblin"
-        self.hp = 11
+        self.hp = 31
         self.mp = 4
-        self.strength = 2
-        self.dexterity = 2
-        self.intelligence = 2
+        self.strength = 12
+        self.dexterity = 7
+        self.intelligence = 7
         self.level = 1
         return self
 
     def snaggletooth_stat_set(self):
         self.name = "Snaggletooth Goblin"
-        self.hp = 14
+        self.hp = 34
         self.mp = 3
-        self.strength = 3
-        self.dexterity = 2
-        self.intelligence = 1
-        self.level = 1
+        self.strength = 13
+        self.dexterity = 12
+        self.intelligence = 11
+        self.level = 2
         return self
 
     def snikwort_stat_set(self):
         self.name = "Snikwort Goblin"
-        self.hp = 13
+        self.hp = 33
         self.mp = 5
-        self.strength = 2
-        self.dexterity = 3
-        self.intelligence = 1
-        self.level = 1
+        self.strength = 12
+        self.dexterity = 13
+        self.intelligence = 11
+        self.level = 2
         return self
 
     def wizzletoe_stat_set(self):
         self.name = "Wizzletoe Goblin"
-        self.hp = 10
+        self.hp = 30
         self.mp = 4
-        self.strength = 2
-        self.dexterity = 3
-        self.intelligence = 2
-        self.level = 1
+        self.strength = 12
+        self.dexterity = 13
+        self.intelligence = 17
+        self.level = 3
         return self
 
     def goblinkin_stat_set(self):
         self.name = "Goblinkin Goblin"
-        self.hp = 12
+        self.hp = 32
         self.mp = 5
-        self.strength = 2
-        self.dexterity = 2
-        self.intelligence = 2
-        self.level = 1
+        self.strength = 12
+        self.dexterity = 12
+        self.intelligence = 12
+        self.level = 2
         return self
 
     def snaglet_stat_set(self):
         self.name = "Snaglet Goblin"
-        self.hp = 11
+        self.hp = 31
         self.mp = 4
-        self.strength = 3
-        self.dexterity = 1
-        self.intelligence = 1
-        self.level = 1
+        self.strength = 13
+        self.dexterity = 11
+        self.intelligence = 11
+        self.level = 2
         return self
 
     def glimmerkin_stat_set(self):
         self.name = "Glimmerkin Goblin"
-        self.hp = 9
+        self.hp = 29
         self.mp = 6
-        self.strength = 1
-        self.dexterity = 3
-        self.intelligence = 2
-        self.level = 1
+        self.strength = 11
+        self.dexterity = 13
+        self.intelligence = 12
+        self.level = 2
         return self
 
     def sniknose_stat_set(self):
         self.name = "Sniknose Goblin"
-        self.hp = 10
+        self.hp = 30
         self.mp = 3
-        self.strength = 1
-        self.dexterity = 2
-        self.intelligence = 3
-        self.level = 1
+        self.strength = 11
+        self.dexterity = 18
+        self.intelligence = 13
+        self.level = 4
         return self
 
     @staticmethod
@@ -213,92 +214,92 @@ class MiddleEvolutionGoblin(echaracter.ECharacter):
 
     def snikkle_stat_set(self):
         self.name = "Snikkle Goblin"
-        self.hp = 15
+        self.hp = 55
         self.mp = 8
-        self.strength = 4
-        self.dexterity = 4
-        self.intelligence = 2
-        self.level = 3
+        self.strength = 14
+        self.dexterity = 14
+        self.intelligence = 12
+        self.level = 12
         return self
 
     def grobok_stat_set(self):
         self.name = "Grobok Goblin"
-        self.hp = 16
+        self.hp = 56
         self.mp = 7
-        self.strength = 3
-        self.dexterity = 5
-        self.intelligence = 2
-        self.level = 3
+        self.strength = 13
+        self.dexterity = 15
+        self.intelligence = 20
+        self.level = 17
         return self
 
     def snaggle_stat_set(self):
         self.name = "Snaggle Goblin"
-        self.hp = 14
+        self.hp = 54
         self.mp = 6
-        self.strength = 5
-        self.dexterity = 3
-        self.intelligence = 3
-        self.level = 3
+        self.strength = 15
+        self.dexterity = 13
+        self.intelligence = 13
+        self.level = 13
         return self
 
     def zoglink_stat_set(self):
         self.name = "Zoglink Goblin"
-        self.hp = 15
+        self.hp = 55
         self.mp = 5
-        self.strength = 4
-        self.dexterity = 4
-        self.intelligence = 3
-        self.level = 3
+        self.strength = 14
+        self.dexterity = 14
+        self.intelligence = 13
+        self.level = 14
         return self
 
     def gnarble_stat_set(self):
         self.name = "Gnarble Goblin"
-        self.hp = 13
+        self.hp = 53
         self.mp = 8
-        self.strength = 3
-        self.dexterity = 3
-        self.intelligence = 4
-        self.level = 3
+        self.strength = 13
+        self.dexterity = 13
+        self.intelligence = 14
+        self.level = 13
         return self
 
     def snigwort_stat_set(self):
         self.name = "Snigwort Goblin"
-        self.hp = 16
+        self.hp = 56
         self.mp = 6
-        self.strength = 4
-        self.dexterity = 5
-        self.intelligence = 2
-        self.level = 3
+        self.strength = 14
+        self.dexterity = 15
+        self.intelligence = 12
+        self.level = 13
         return self
 
     def wizzle_stat_set(self):
         self.name = "Wizzle Goblin"
-        self.hp = 14
+        self.hp = 54
         self.mp = 7
-        self.strength = 3
-        self.dexterity = 4
-        self.intelligence = 3
-        self.level = 2
+        self.strength = 13
+        self.dexterity = 14
+        self.intelligence = 13
+        self.level = 14
         return self
 
     def goblimp_stat_set(self):
         self.name = "Goblimp Goblin"
-        self.hp = 15
+        self.hp = 65
         self.mp = 6
-        self.strength = 4
-        self.dexterity = 4
-        self.intelligence = 3
-        self.level = 3
+        self.strength = 24
+        self.dexterity = 24
+        self.intelligence = 13
+        self.level = 23
         return self
 
     def grunk_stat_set(self):
         self.name = "Grunk Goblin"
-        self.hp = 14
+        self.hp = 64
         self.mp = 7
-        self.strength = 3
-        self.dexterity = 3
-        self.intelligence = 3
-        self.level = 2
+        self.strength = 23
+        self.dexterity = 23
+        self.intelligence = 13
+        self.level = 22
         return self
 
     @staticmethod
@@ -322,102 +323,102 @@ class HigherEvolutionGoblin(echaracter.ECharacter):
 
     def snarltooth_stat_set(self):
         self.name = "Snarltooth Goblin"
-        self.hp = 25
+        self.hp = 75
         self.mp = 15
-        self.strength = 8
-        self.dexterity = 7
-        self.intelligence = 5
-        self.level = 5
+        self.strength = 28
+        self.dexterity = 27
+        self.intelligence = 25
+        self.level = 24
         return self
 
     def rumblefist_stat_set(self):
         self.name = "Rumblefist Goblin"
-        self.hp = 23
+        self.hp = 73
         self.mp = 12
-        self.strength = 7
-        self.dexterity = 8
-        self.intelligence = 6
-        self.level = 5
+        self.strength = 17
+        self.dexterity = 18
+        self.intelligence = 26
+        self.level = 20
         return self
 
     def gorknash_stat_set(self):
         self.name = "Gorknash Goblin"
-        self.hp = 24
+        self.hp = 74
         self.mp = 14
-        self.strength = 9
-        self.dexterity = 6
-        self.intelligence = 6
-        self.level = 5
+        self.strength = 29
+        self.dexterity = 26
+        self.intelligence = 7
+        self.level = 25
         return self
 
     def kragnash_stat_set(self):
         self.name = "Kragnash Goblin"
-        self.hp = 22
+        self.hp = 72
         self.mp = 13
-        self.strength = 8
-        self.dexterity = 7
-        self.intelligence = 7
-        self.level = 5
+        self.strength = 28
+        self.dexterity = 15
+        self.intelligence = 8
+        self.level = 25
         return self
 
     def grimsnarl_stat_set(self):
         self.name = "Grimsnarl Goblin"
-        self.hp = 21
+        self.hp = 71
         self.mp = 16
-        self.strength = 7
-        self.dexterity = 6
-        self.intelligence = 8
-        self.level = 5
+        self.strength = 17
+        self.dexterity = 26
+        self.intelligence = 18
+        self.level = 23
         return self
 
     def grobthar_stat_set(self):
         self.name = "Grobthar Goblin"
-        self.hp = 26
+        self.hp = 76
         self.mp = 11
-        self.strength = 9
-        self.dexterity = 8
-        self.intelligence = 5
-        self.level = 5
+        self.strength = 19
+        self.dexterity = 18
+        self.intelligence = 15
+        self.level = 21
         return self
 
     def thraggle_stat_set(self):
         self.name = "Thraggle Goblin"
-        self.hp = 20
+        self.hp = 70
         self.mp = 17
-        self.strength = 6
-        self.dexterity = 9
-        self.intelligence = 7
-        self.level = 5
+        self.strength = 26
+        self.dexterity = 29
+        self.intelligence = 17
+        self.level = 25
         return self
 
     def zilgok_stat_set(self):
         self.name = "Zilgok Goblin"
-        self.hp = 19
+        self.hp = 69
         self.mp = 18
-        self.strength = 5
-        self.dexterity = 10
-        self.intelligence = 8
-        self.level = 5
+        self.strength = 25
+        self.dexterity = 30
+        self.intelligence = 18
+        self.level = 25
         return self
 
     def sniklash_stat_set(self):
         self.name = "Sniklash Goblin"
-        self.hp = 18
+        self.hp = 68
         self.mp = 20
-        self.strength = 4
-        self.dexterity = 11
-        self.intelligence = 9
-        self.level = 5
+        self.strength = 14
+        self.dexterity = 21
+        self.intelligence = 19
+        self.level = 24
         return self
 
     def vargnash_stat_set(self):
         self.name = "Vargnash Goblin"
-        self.hp = 20
+        self.hp = 70
         self.mp = 19
-        self.strength = 6
-        self.dexterity = 9
-        self.intelligence = 7
-        self.level = 5
+        self.strength = 26
+        self.dexterity = 19
+        self.intelligence = 17
+        self.level = 24
         return self
 
     @staticmethod
@@ -442,34 +443,34 @@ class BossEvolutionGoblin(echaracter.ECharacter):
 
     def grommok_the_tyrant_stat_set(self):
         self.name = "Grommok The Tyrant"
-        self.hp = 50
+        self.hp = 105
         self.mp = 30
-        self.strength = 15
-        self.dexterity = 12
-        self.intelligence = 10
-        self.level = 10
+        self.strength = 35
+        self.dexterity = 22
+        self.intelligence = 20
+        self.level = 25
         self.statusEffect = "Fury Swipe"  # Deals a massive cleave damage
         return self
 
     def zargoth_the_unbreakable_stat_set(self):
         self.name = "Zargoth The Unbreakable"
-        self.hp = 55
+        self.hp = 155
         self.mp = 25
-        self.strength = 14
-        self.dexterity = 10
+        self.strength = 24
+        self.dexterity = 8
         self.intelligence = 12
-        self.level = 11
+        self.level = 26
         self.statusEffect = "Unyielding Resiliance "  # Reduce incoming damage for one turn by 50%
         return self
 
     def morgul_the_devourer_stat_set(self):
         self.name = "Morgul The Devourer"
-        self.hp = 60
+        self.hp = 130
         self.mp = 35
-        self.strength = 16
-        self.dexterity = 13
-        self.intelligence = 11
-        self.level = 12
+        self.strength = 36
+        self.dexterity = 33
+        self.intelligence = 31
+        self.level = 28
         self.statusEffect = "Fury Swipe"  # life steal by damage deal
         return self
 

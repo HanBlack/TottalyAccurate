@@ -21,7 +21,7 @@ class Character:
         self.level = 0
         self.statusEffect = None
         self.equipment = Equipment()
-        self.character_class = ""
+        self.level_up_points = {'strength': 10, 'dexterity': 10, 'intelligence': 10}
 
     @property
     def hp(self):
@@ -128,6 +128,15 @@ class Character:
         new_character = character_classes[character_class.lower()]()
         return new_character
 
+    def increase_strength(self):
+        self.strength += 1
+
+    def increase_dexterity(self):
+        self.dexterity += 1
+
+    def increase_intelligence(self):
+        self.intelligence += 1
+
     def increase_experience(self, amount):
         self._experience += amount
         while self._experience >= self.calculate_experience_needed_for_next_level():
@@ -136,15 +145,18 @@ class Character:
     def calculate_experience_needed_for_next_level(self):
         return (150 * self.level) + self.strength + self.dexterity + self.intelligence + random.randint(1, 5)
 
-    def level_up(self):
+    def level_up(self, stat_to_increase):
         experience_required = self.calculate_experience_needed_for_next_level()
         if self._experience >= experience_required:
             self._experience -= experience_required
             self.level += 1
-            self.strength += 3
-            self.dexterity += 3
-            self.intelligence += 3
-            print(f"{self.name} leveled up to level {self.level}!")
+            if stat_to_increase.lower() == 'strength':
+                self.level_up_points['strength'] += 1
+            elif stat_to_increase.lower() == 'dexterity':
+                self.level_up_points['dexterity'] += 1
+            elif stat_to_increase.lower() == 'intelligence':
+                self.level_up_points['intelligence'] += 1
+            print(f"{self.name} leveled up to level {self.level} and increased {stat_to_increase}!")
             return True
         else:
             return False
@@ -159,14 +171,14 @@ class Character:
         if self.check_if_player_scored_critical_hit():
             primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
 
-        if self.equipment.weapon and "damage" in self.equipment.weapon:  # Check if the weapon has a damage attribute
+        if self.equipment.weapon and "damage" in self.equipment.weapon:
             weapon_damage = self.equipment.weapon["damage"]
-            if weapon_damage is not None:  # Ensure the damage value is not None
-                return int((primary_damage_deal_attribute / 5) + weapon_damage) + random.randint(-1, 1)
+            if weapon_damage is not None:
+                return int((primary_damage_deal_attribute * 0.8) + weapon_damage) + random.randint(-3, 3)
             else:
-                return int(primary_damage_deal_attribute)
+                return int(primary_damage_deal_attribute) / 2
         else:
-            return int(primary_damage_deal_attribute)
+            return int(primary_damage_deal_attribute) / 2
 
     def calculate_character_armor_value(self):
         total_armour = 0

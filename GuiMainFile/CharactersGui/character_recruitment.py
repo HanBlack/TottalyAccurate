@@ -122,8 +122,15 @@ def create_character_spreed_sheet_for_recruit(frame, class_name, row_position, c
     return row_position + 1 if (column_position + 1) % 4 == 0 else row_position, (column_position + 1) % 4
 
 
-def character_recruit_gui_run():
-    root = tk.Tk()
+def character_recruit_gui_run(main_window):
+    def on_closing():
+        root.destroy()  # Destroy the recruitment window
+
+    def recruit_window_closed():
+        main_window.deiconify()  # Show the main window when recruitment window is closed
+        root.destroy()  # Destroy the recruitment window
+
+    root = tk.Toplevel(main_window)
     root.title("Game")
 
     character_classes = make_recruitment_random()
@@ -132,4 +139,7 @@ def character_recruit_gui_run():
     col_pos = 0
     for char_class in character_classes:
         row_pos, col_pos = create_character_spreed_sheet_for_recruit(root, char_class, row_pos, col_pos)
-    root.mainloop()
+
+    root.protocol("WM_DELETE_WINDOW", on_closing)  # Handles window close event
+    root.bind("<Destroy>", lambda e: recruit_window_closed())  # When window is destroyed, return to main window
+

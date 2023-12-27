@@ -28,24 +28,6 @@ class Equipment:
                 if item:
                     file.write(f"{slot}: {item.name}\n")
 
-    def get_equipped_items(self):
-        equipped_slots = {
-            "head": self.head,
-            "chest": self.chest,
-            "legs": self.legs,
-            "boots": self.boots,
-            "hands": self.hands,
-            "weapon": self.weapon,
-            "offhand": self.offhand,
-            "neck": self.neck,
-            "ring": self.ring
-        }
-        equipped_items_dict = {}
-        for slot, item in equipped_slots.items():
-            if item:
-                equipped_items_dict[slot] = item
-        return equipped_items_dict
-
     def dictionary_for_items(self):
         equipped_slots = {
             "head": self.head,
@@ -77,6 +59,8 @@ class Equipment:
             self.hands = item
         elif item.item_class == 'Neck':
             self.neck = item
+        elif item.item_class == 'Legs':
+            self.neck = item
         elif item.item_class == 'Ring':
             self.ring = item
         elif item.item_class in ['Shield', 'Buckler', 'ManaOrb']:
@@ -93,6 +77,8 @@ class Equipment:
             self.boots = None
         elif slot_name == 'hands':
             self.hands = None
+        elif slot_name == 'legs':
+            self.legs = None
         elif slot_name == 'neck':
             self.neck = None
         elif slot_name == 'ring':

@@ -84,15 +84,16 @@ class ECharacter:
         else:
             self._level = value
 
-    def calculate_total_experience(self):
+    def calculate_total_experience(self, defeated_enemy):
         base_exp = self.level * 90
-        hp_multiplier = self.hp / 10
-        strength_multiplier = self.strength / 2
-        dexterity_multiplier = self.dexterity / 2
-        intelligence_multiplier = self.intelligence / 2
-        total_experience = (base_exp + hp_multiplier + strength_multiplier +
-                            dexterity_multiplier + intelligence_multiplier)
+        hp_multiplier = (self.hp / 10) + (defeated_enemy.hp / 20)
+        strength_multiplier = (self.strength / 2) + (defeated_enemy.strength / 4)
+        dexterity_multiplier = (self.dexterity / 2) + (
+                defeated_enemy.dexterity / 4)
+        intelligence_multiplier = (self.intelligence / 2) + (
+                defeated_enemy.intelligence / 4)
 
+        total_experience = base_exp + hp_multiplier + strength_multiplier + dexterity_multiplier + intelligence_multiplier
         return int(total_experience)
 
     def calculate_damage_done_by_enemy(self):
@@ -102,14 +103,14 @@ class ECharacter:
             primary_damage_deal_attribute = (primary_damage_deal_attribute * 2) - (self.level / 2)
 
         if primary_damage_deal_attribute <= 5:
-            minimal_damage_done = int(primary_damage_deal_attribute) - 1
-            maximal_damage_done = int(primary_damage_deal_attribute) + 1
-        elif 5 <= primary_damage_deal_attribute <= 15:
             minimal_damage_done = int(primary_damage_deal_attribute) - 2
             maximal_damage_done = int(primary_damage_deal_attribute) + 2
-        elif 15 <= primary_damage_deal_attribute <= 30:
+        elif 5 <= primary_damage_deal_attribute <= 15:
             minimal_damage_done = int(primary_damage_deal_attribute) - 4
             maximal_damage_done = int(primary_damage_deal_attribute) + 4
+        elif 15 <= primary_damage_deal_attribute <= 30:
+            minimal_damage_done = int(primary_damage_deal_attribute) - 8
+            maximal_damage_done = int(primary_damage_deal_attribute) + 8
         else:
             return int(primary_damage_deal_attribute)
 
